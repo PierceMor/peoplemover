@@ -59,8 +59,54 @@ render() {
                     <Jumbotron>
                         <h1>Input some Info about Yourself!</h1>
                     </Jumbotron>
-                </Col> 
+                    <form>
+                        <Input
+                        value={this.state.name}
+                        onChange={this.handleInputChange}
+                        name="name"
+                        placeholder="Full Name (required)" 
+                        />
+                        <TextArea
+                            value={this.state.description}
+                            onChange={this.handleInputChange}
+                            name="description"
+                            placeholder="Provide a Description of yourself" 
+                        />
+                        <Button
+                             disabled={!(this.state.name && this.state.description)}
+                             onClick={this.handeFormSubmit}
+                        >
+                            Submit Information
+                        </Button>
+                    </form>
+                </Col>
+                <Col size="md-6 sm-12" >
+                    <Jumbotron>
+                        <h1>Users on File</h1>
+                    </Jumbotron>
+                        {this.sate.users.length ? (
+                            <ListGroup>
+                                {this.state.users.map(user => (
+                                    <ListGroupItem key={user._id} >
+                                        <Link to={"/users/"}>
+                                            <strong>
+                                                {user.name} 
+                                            </strong>
+                                        </Link>
+                                        <Button
+                                            onclick={() => this.deleteUsers(book._id)}
+                                        >
+                                        </Button>
+                                    </ListGroupItem>
+                                ))}
+                            </ListGroup>
+                        ):(
+                            <h3>No Results to Display</h3>
+                        )}
+                </Col>
             </Row>
         </Container>
     )
 } //render
+
+export default Users;
