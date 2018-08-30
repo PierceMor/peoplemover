@@ -49,7 +49,6 @@ class Users extends Component {
         }
     }; //handleFormSubmit
     
-}//Users
 
 render() {
     return (
@@ -106,7 +105,9 @@ render() {
                 </Col>
             </Row>
         </Container>
-    )
-} //render
+        )
+    } //render
+}//Users
+
 
 export default Users;
