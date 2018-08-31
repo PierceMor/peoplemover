@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Jumbotron, Button, Col, Row, Container, ListGroup, ListGroupItem } from "reactstrap";
-import Link from "react-router-dom";
+import { Jumbotron, Button, Col, Row, Container, ListGroup, ListGroupItem, Input } from "reactstrap";
+import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 class Users extends Component {
@@ -25,7 +25,7 @@ class Users extends Component {
     }; //loadUsers
 
     deleteUsers = () => {
-        API.deleteUsers(id)
+        API.deleteUsers()
         .then(res => this.loadUsers())
         .catch(err => console.log(err));
     }; //deleteUsers
@@ -65,7 +65,8 @@ render() {
                         name="name"
                         placeholder="Full Name (required)" 
                         />
-                        <TextArea
+                        <Input
+                            type="textarea"
                             value={this.state.description}
                             onChange={this.handleInputChange}
                             name="description"
@@ -83,7 +84,7 @@ render() {
                     <Jumbotron>
                         <h1>Users on File</h1>
                     </Jumbotron>
-                        {this.sate.users.length ? (
+                        {this.state.users.length ? (
                             <ListGroup>
                                 {this.state.users.map(user => (
                                     <ListGroupItem key={user._id} >
@@ -93,7 +94,7 @@ render() {
                                             </strong>
                                         </Link>
                                         <Button
-                                            onclick={() => this.deleteUsers(book._id)}
+                                            onclick={() => this.deleteUsers(user._id)}
                                         >
                                         </Button>
                                     </ListGroupItem>
